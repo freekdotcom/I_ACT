@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{51D1ABD8-7C3C-47E8-976D-86FA3A9377A5}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>ACD.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)App\Checkbox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\ListButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\SetupPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Tips\SelectTipsList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Tips\TipInfoPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Tips\TipPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Tips\TipView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Coach\TipScheduler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Coach\Coach.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Coach\Tip.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Coach\TipStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Event.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Profile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Serialization.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\UI\ExtButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\SettingsPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Settings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\ISQLite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Coach\TipSchedule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\NotificationCenter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\IPreferences.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\CoachPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\UI\StyleKit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Tips\SelectTipsPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Tips\ManageTipsPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Alert.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\UI\BorderView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Tips\TipEntryPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Coach\Monitor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Coach\MonitorEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Coach\DisplayTipEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Monitors\MoodMonitor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Monitors\ActivityMonitor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\MainApp.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\UI\TextStyles.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\LogEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Stats\GraphCell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Stats\DayFragment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Stats\GraphPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Stats\StatsPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Coach\DiaryEntry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Stats\DiaryPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Stats\DiaryEntryPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\UI\CustomNavigationPage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)App\check.png" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)App\profile.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)App\Tips\tips.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)App\Monitors\face-sad.png" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)App\Monitors\face-smile.png" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)App\Monitors\heart.png" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)App\Monitors\heart-full.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)App\Stats\" />
+  </ItemGroup>
+</Project>

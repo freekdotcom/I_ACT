@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorldApp.MonoTouch", "HelloWorldApp.MonoTouch\HelloWorldApp.MonoTouch.csproj", "{C949240B-B270-4A5D-B2C7-7051491FF390}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		Ad-Hoc|iPhoneSimulator = Ad-Hoc|iPhoneSimulator
+		AppStore|iPhone = AppStore|iPhone
+		AppStore|iPhoneSimulator = AppStore|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C949240B-B270-4A5D-B2C7-7051491FF390}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{C949240B-B270-4A5D-B2C7-7051491FF390}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{C949240B-B270-4A5D-B2C7-7051491FF390}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Ad-Hoc|iPhone
+		{C949240B-B270-4A5D-B2C7-7051491FF390}.Ad-Hoc|iPhoneSimulator.Build.0 = Ad-Hoc|iPhone
+		{C949240B-B270-4A5D-B2C7-7051491FF390}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{C949240B-B270-4A5D-B2C7-7051491FF390}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{C949240B-B270-4A5D-B2C7-7051491FF390}.AppStore|iPhoneSimulator.ActiveCfg = Ad-Hoc|iPhone
+		{C949240B-B270-4A5D-B2C7-7051491FF390}.AppStore|iPhoneSimulator.Build.0 = Ad-Hoc|iPhone
+		{C949240B-B270-4A5D-B2C7-7051491FF390}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{C949240B-B270-4A5D-B2C7-7051491FF390}.Debug|iPhone.Build.0 = Debug|iPhone
+		{C949240B-B270-4A5D-B2C7-7051491FF390}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{C949240B-B270-4A5D-B2C7-7051491FF390}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{C949240B-B270-4A5D-B2C7-7051491FF390}.Release|iPhone.ActiveCfg = Release|iPhone
+		{C949240B-B270-4A5D-B2C7-7051491FF390}.Release|iPhone.Build.0 = Release|iPhone
+		{C949240B-B270-4A5D-B2C7-7051491FF390}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{C949240B-B270-4A5D-B2C7-7051491FF390}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = HelloWorldApp.MonoTouch\HelloWorldApp.MonoTouch.csproj
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

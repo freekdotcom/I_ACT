@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" package="nl.hva.acd" android:versionName="20141110" android:versionCode="2">
+	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="21" />
+	<application android:label="ACD" android:icon="@drawable/Icon"></application>
+</manifest>
