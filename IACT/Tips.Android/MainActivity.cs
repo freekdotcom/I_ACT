@@ -16,7 +16,7 @@ namespace ACD.App.Droid
     [Activity(Label = "I-ACT", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-        public const string StartTip = "START_TIP";
+        public const string START_TIP = "START_TIP";
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -25,7 +25,7 @@ namespace ACD.App.Droid
 
             base.OnCreate(savedInstanceState);
 
-            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Forms.Init(this, savedInstanceState);
 
             var start = int.Parse(Intent.GetStringExtra("open") ?? "0");
             MainApp.LaunchData = Intent.GetStringExtra("data");

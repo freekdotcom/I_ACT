@@ -9,7 +9,7 @@
 		<item name="colorPrimary">#FA5755</item>
 		<item name="colorPrimaryDark">#000000</item>
 		<item name="colorAccent">#FFFFFF</item>
-		<item name="android:textColor">#141414</item>
+		<item name="android:textColor">#000000</item>		
 		<item name="android:textSize">18dp</item>
 	</style>
 	<!-- Base theme applied no matter what API -->
@@ -44,11 +44,11 @@
 	<style name="TimePickerDialogStyle" parent="@android:style/Widget.Material.Light.TimePicker">
 		<item name="colorAccent">#ff6d3024</item>
 		<item name="android:timePickerMode">clock</item>
-		<item name="android:headerBackground">#ff6d3024</item>
+		<item name="android:headerBackground">#fa5755 </item>
 		<!-- <item name="android:headerTimeTextAppearance">@style/TextAppearance.TimePickerDialogStyle.TimeLabel</item> -->
 		<!-- TimePicker Time *TextAppearance* -->
 		<item name="android:numbersTextColor">#ff000000</item>
-		<item name="android:numbersSelectorColor">#ff6d3024</item>
-		<item name="android:numbersBackgroundColor">#ffdddddd</item>
+		<item name="android:numbersSelectorColor">#FFFFFF</item>
+		<item name="android:numbersBackgroundColor">#fa5755</item>
 	</style>
 </resources>

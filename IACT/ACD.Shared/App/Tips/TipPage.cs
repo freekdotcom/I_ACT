@@ -40,7 +40,7 @@ namespace ACD.App
 			layout = new StackLayout {
                 Spacing = StyleKit.AutoSpacing.Small,
                 Padding = StyleKit.AutoPaddingLight,
-				Children = {
+                Children = {
                     new Label {
                         Text = "We hebben een tip voor je:",
                         HorizontalTextAlignment = TextAlignment.Center,

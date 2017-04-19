@@ -24,13 +24,7 @@ namespace ACD.App
 
             selectTipsPage = new SelectTipsPage(coach);
 
-            selectTips = new TextCell {
-                Text = "Tips selecteren",
-                Command = new Command(async () => {
-                    await Navigation.PushAsync(selectTipsPage);
-                }),
-                StyleId = "disclosure"
-            };
+            selectTips = createNewTextCells("Tips selecteren");
 
             var times = coach.Scheduler.GetTimes();
 
@@ -51,13 +45,7 @@ namespace ACD.App
                 {
                     timeSection.Add(new TimeCell(coach.Scheduler, time));
                 }
-                timeSection.Add(new TextCell {
-                    Text = "Tijd toevoegen",
-                    Command = new Command(async () => {
-                        await ShowSelectTimeAlert(coach.Scheduler);
-                    }),
-                    StyleId = "disclosure"
-                });
+                timeSection.Add(createNewTextCells("Tijd toevoegen"));
             };
 
             times.AsObservable().CollectionChanged += (sender, e) => renderTimeSection();
@@ -79,6 +67,17 @@ namespace ACD.App
             await coach.PerformChecks(true);
 
             base.OnAppearing();
+        }
+
+        public TextCell createNewTextCells(string text)
+        {
+            return new TextCell {
+                Text = text,
+                Command = new Command(async () => {
+                    await Navigation.PushAsync(selectTipsPage);
+                }),
+                StyleId = "disclosure"
+            };
         }
 
         public class TimeCell : TextCell

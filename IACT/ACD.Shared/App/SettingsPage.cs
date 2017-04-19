@@ -106,6 +106,8 @@ namespace ACD.App
                             }
                         },
                     },
+
+
                     new TableSection("Toegangsinstellingen") {
                         new TextCell {
                             Text = "Pincode opnieuw instellen",
