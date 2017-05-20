@@ -212,6 +212,7 @@
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
+    <AndroidResource Include="Resources\layout\AlertDialogLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="SharpSerializer">

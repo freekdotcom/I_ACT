@@ -103,6 +103,7 @@ namespace ACD.App
             {
                 Text = "Volgende",
                 Style = StyleKit.AutoLightButtonStyles.Body,
+                TextColor = Color.White,
                 HeightRequest = 4 * StyleKit.AutoSpacing.Small,
                 BackgroundColor = Color.FromHex("fa5755"),
                 VerticalOptions = LayoutOptions.EndAndExpand
@@ -176,7 +177,9 @@ namespace ACD.App
             {
                 Time = TimeSpan.FromHours(hours),
                 Format = "HH:mm",
+#if __ANDROID__
                 TextColor = Color.Black,
+#endif
             };
 
             var timePickers = new List<TimePicker>();
@@ -202,7 +205,9 @@ namespace ACD.App
                 {
                     Text = "Om: ",
                     Style = StyleKit.AutoDarkLabelStyles.Body,
+#if __ANDROID__
                     TextColor = Color.Black,
+#endif
                     HorizontalTextAlignment = TextAlignment.End,
                     VerticalTextAlignment = TextAlignment.Center
                 };

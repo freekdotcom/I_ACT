@@ -54,6 +54,9 @@ namespace ACD.App
                     Padding = new Thickness(15, 5),
                     Children = {
                         (exportLabel = new Label { Text = "Exporteer gebruikersprofiel",
+#if __ANDROID__
+                    TextColor = Color.Black,
+#endif
                             VerticalTextAlignment = TextAlignment.Center,
                             Style = StyleKit.AutoDarkLabelStyles.Body })
                     }
@@ -73,6 +76,9 @@ namespace ACD.App
                                 Padding = new Thickness(15, 5),
                                 Children = {
                                     new Label { Text = "'s Ochtends om: ",
+#if __ANDROID__
+                    TextColor = Color.Black,
+#endif
                                         VerticalTextAlignment = TextAlignment.Center,
                                         Style = StyleKit.AutoDarkLabelStyles.Body },
                                     morningCheck
@@ -85,6 +91,9 @@ namespace ACD.App
                                 Padding = new Thickness(15, 5),
                                 Children = {
                                     new Label { Text = "'s Avonds om: ",
+#if __ANDROID__
+                    TextColor = Color.Black,
+#endif
                                         VerticalTextAlignment = TextAlignment.Center,
                                         Style = StyleKit.AutoDarkLabelStyles.Body },
                                     eveningCheck
@@ -99,6 +108,10 @@ namespace ACD.App
                                 Padding = new Thickness(15, 5),
                                 Children = {
                                     new Label { Text = "'s Avonds om: ",
+#if __ANDROID__
+                    TextColor = Color.Black,
+
+#endif
                                         VerticalTextAlignment = TextAlignment.Center,
                                         Style = StyleKit.AutoDarkLabelStyles.Body },
                                     activityCheck
@@ -111,6 +124,10 @@ namespace ACD.App
                     new TableSection("Toegangsinstellingen") {
                         new TextCell {
                             Text = "Pincode opnieuw instellen",
+#if __ANDROID__
+                    TextColor = Color.Black,
+#endif
+
                             Command = new Command(async () => {
                                 await Navigation.PushAsync(new PasswordPage(coach));
                             }),
@@ -118,6 +135,8 @@ namespace ACD.App
                         },
                         new TextCell {
                             Text = "Emailadres opnieuw instellen",
+                            TextColor = Color.Black,
+
                             Command = new Command(async () => {
                                 await Navigation.PushAsync(new EmailPage(coach));
                             }),

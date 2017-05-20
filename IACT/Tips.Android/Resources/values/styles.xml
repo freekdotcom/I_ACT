@@ -48,6 +48,7 @@
 		<!-- <item name="android:headerTimeTextAppearance">@style/TextAppearance.TimePickerDialogStyle.TimeLabel</item> -->
 		<!-- TimePicker Time *TextAppearance* -->
 		<item name="android:numbersTextColor">#ff000000</item>
+		<item name="android:textSize">18dp</item>
 		<item name="android:numbersSelectorColor">#FFFFFF</item>
 		<item name="android:numbersBackgroundColor">#fa5755</item>
 	</style>

@@ -36,7 +36,8 @@ namespace ACD
             Scheduler = tipScheduler;
             Monitors = monitors;
 
-            NotificationCenter.NotificationRecieved += async (sender, e) => {
+            NotificationCenter.NotificationRecieved += async (sender, e) =>
+            {
                 await PerformChecks(false);
             };
         }
@@ -62,7 +63,8 @@ namespace ACD
 
             MainApp.BackEnabled = false;
 
-            var entry = new Entry {
+            var entry = new Entry
+            {
                 Keyboard = Keyboard.Numeric,
                 IsPassword = true,
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
@@ -70,7 +72,8 @@ namespace ACD
                 Style = entryStyles.Body
             };
 
-            var error = new Label {
+            var error = new Label
+            {
                 Text = "Verkeerde pincode. Probeer het nog eens.",
                 HorizontalTextAlignment = TextAlignment.Center,
                 Style = StyleKit.AutoDarkLabelStyles.Caption,
@@ -79,17 +82,19 @@ namespace ACD
                 IsVisible = false
             };
 
-            entry.TextChanged += (sender, e) => {
+            entry.TextChanged += (sender, e) =>
+            {
                 if (e.NewTextValue?.Length > 4)
                     entry.Text = e.OldTextValue;
                 else
-                    error.IsVisible = false;    
+                    error.IsVisible = false;
             };
 
             await Alert.Show(
                 "Welkom!",
                 "Vul om door te gaan a.u.b. hieronder je pincode in.",
-                new StackLayout {
+                new StackLayout
+                {
                     Children = {
                         entry,
                         error
@@ -97,36 +102,43 @@ namespace ACD
                     Padding = 0,
                     Spacing = StyleKit.PhoneSpacing.Small
                 },
-                new AlertButton {
+                new AlertButton
+                {
                     Text = "Vergeten",
-                    ActionAsync = async () => {
+                    ActionAsync = async () =>
+                    {
                         var canceled = false;
                         var email = Preferences.Get<string>(UserProfile.ID + "_email");
                         await Alert.Show(
                             "Pincode resetten",
                             $"Omdat je je pincode vergeten bent kunnen wij je een nieuwe toesturen via e-mail. Deze wordt dan gestuurd naar het adres \"{email}\".",
                             null,
-                            new AlertButton {
+                            new AlertButton
+                            {
                                 Text = "Nee, dank je",
-                                Action = () => {
+                                Action = () =>
+                                {
                                     canceled = true;
                                     return false;
                                 }
                             },
-                            new AlertButton {
+                            new AlertButton
+                            {
                                 Text = "Ja, graag",
                                 IsPreferred = true,
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
-                                ActionAsync = async () => {
+                                ActionAsync = async () =>
+                                {
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
-                                    var message = new MimeMessage ();
+                                    var message = new MimeMessage();
                                     message.From.Add(new MailboxAddress("I-ACT", "I-ACT-tijdelijk@nardilam.nl"));
-                                    message.To.Add(new MailboxAddress ("I-ACT gebruiker", email));
+                                    message.To.Add(new MailboxAddress("I-ACT gebruiker", email));
                                     message.Subject = "Nieuwe pincode I-ACT";
 
                                     var newPass = SetTemporaryPassword();
 
-                                    message.Body = new TextPart("plain") {
+                                    message.Body = new TextPart("plain")
+                                    {
                                         Text = $@"Beste mevrouw/meneer,
 
 U heeft via de I-ACT app aangegeven dat u uw pincode voor die app vergeten bent en graag een nieuwe zou willen. Uw nieuwe pincode is:
@@ -138,22 +150,32 @@ We hopen dat u de app nu verder plezierig kunt blijven gebruiken.
 Met vriendelijke groet,
 I-ACT"
                                     };
-                                    using (var client = new SmtpClient()) {
+                                    using (var client = new SmtpClient())
+                                    {
                                         client.Connect("smtp.gmail.com", 465, true);
 
                                         // Note: since we don't have an OAuth2 token, disable
                                         // the XOAUTH2 authentication mechanism.
-                                        client.AuthenticationMechanisms.Remove ("XOAUTH2");
+                                        client.AuthenticationMechanisms.Remove("XOAUTH2");
 
                                         // Note: only needed if the SMTP server requires authentication
-                                        client.Authenticate ("i-act-tijdelijk@nardilam.nl", "suwwrmtzfkulsoix");
+                                        client.Authenticate("i-act-tijdelijk@nardilam.nl", "suwwrmtzfkulsoix");
 
-                                        client.Send (message);
-                                        client.Disconnect (true);
+                                        client.Send(message);
+                                        client.Disconnect(true);
+                                    }
+                                    if (!canceled)
+                                    {
+                                        await Alert.Show(
+                                            "Pincode gereset!",
+                                            "We hebben een nieuwe pincode naar je e-mail toegestuurd. Je kunt die nu gebruiken om in te loggen.\nGa daarna a.u.b. naar de instellingen van de app om een eigen pincode in te stellen voordat je de app verder gebruikt."
+                                        );
                                     }
                                     return false;
                                 }
+                                
                             }
+                        
                         );
                         if (!canceled)
                         {
@@ -165,10 +187,12 @@ I-ACT"
                         return true;
                     }
                 },
-                new AlertButton {
+                new AlertButton
+                {
                     Text = "Klaar",
                     IsPreferred = true,
-                    Action = () => {
+                    Action = () =>
+                    {
                         if (CheckPassword(UserProfile, entry.Text))
                         {
                             authenticated = true;
@@ -208,7 +232,7 @@ I-ACT"
             var oldEntries = diary.Skip(2).Where(entry => string.IsNullOrWhiteSpace(entry.Text));
             foreach (var entry in oldEntries.ToList())
                 diary.Remove(entry);
-            
+
             var newTip = Scheduler.CheckSchedule();
 
             foreach (var monitor in Monitors)
@@ -237,7 +261,8 @@ I-ACT"
                     {
                         Text = "Naar tip",
                         IsPreferred = true,
-                        Action = () => {
+                        Action = () =>
+                        {
                             MainApp.Navigation.PushAsync(new TipPage(this, "Nieuwe tip"));
                             return false;
                         }

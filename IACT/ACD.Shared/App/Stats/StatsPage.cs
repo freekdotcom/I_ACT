@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 
+
 using Xamarin.Forms;
 
 namespace ACD.App
@@ -18,6 +19,8 @@ namespace ACD.App
 
         public static readonly Color BarBackgroundColor = Color.FromRgb(242, 183, 57);
         public static readonly Color BarTextColor = Color.White;
+        String first = "This word is ";
+
 
         public string NavTitle { get; private set; }
 
@@ -59,6 +62,9 @@ namespace ACD.App
                     new TableSection("Stemming") {
                         new TextCell {
                             Text = "Bekijk stemmingsverloop",
+#if __ANDROID__
+                    TextColor = Color.Black,
+#endif
                             Command = new Command(async () => {
                                 await Navigation.PushAsync(moodGraph);
                             }),
@@ -68,6 +74,10 @@ namespace ACD.App
                     new TableSection("Activiteit") {
                         new TextCell {
                             Text = "Bekijk activiteit",
+#if __ANDROID__
+                    TextColor = Color.Black,
+#endif
+
                             Command = new Command(async () => {
                                 await Navigation.PushAsync(activityGraph);
                             }),
@@ -75,6 +85,10 @@ namespace ACD.App
                         },
                         new TextCell {
                             Text = "Open dagboekje",
+#if __ANDROID__
+                    TextColor = Color.Black,
+#endif
+
                             Command = new Command(async () => {
                                 await Navigation.PushAsync(diaryPage);
                             }),
@@ -100,6 +114,8 @@ namespace ACD.App
                 }
             });
         }
+
+
 
         protected override async void OnAppearing()
         {

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
+
 namespace ACD.App
 {
     public partial class ManageTipsPage : ContentPage
@@ -10,6 +11,7 @@ namespace ACD.App
         public static readonly Color BarBackgroundColor = Color.FromHex("68d7c6");
         public static readonly Color BarTextColor = Color.White;
 
+        Label test = new Label();
         Coach coach;
         SelectTipsPage selectTipsPage;
 
@@ -19,18 +21,21 @@ namespace ACD.App
         {
             this.coach = coach;
 
+            test.Text = "Test";
+
             Title = "Tips instellen";
             NavigationPage.SetBackButtonTitle(this, "Terug");
 
             selectTipsPage = new SelectTipsPage(coach);
 
-            selectTips = createNewTextCells("Tips selecteren");
+            selectTips = createNewTextCells("Tips instellen");
 
             var times = coach.Scheduler.GetTimes();
 
-            var timeSection = new TableSection("Tijden waarop je een tip ontvangt:");
+            var timeSection = new TableSection(test.Text);
 
-            Action renderTimeSection = () => {
+            Action renderTimeSection = () =>
+            {
                 timeSection.Clear();
                 /* timeSection.Replace(
                     new TextCell {
@@ -43,15 +48,37 @@ namespace ACD.App
                 ); */
                 foreach (TimeSpan time in times)
                 {
-                    timeSection.Add(new TimeCell(coach.Scheduler, time));
+                    var newTimeCell = new TimeCell(coach.Scheduler, time);
+#if __ANDROID__
+                    newTimeCell.TextColor = Color.Black;
+#endif
+                    timeSection.Add(newTimeCell);
                 }
-                timeSection.Add(createNewTextCells("Tijd toevoegen"));
+                timeSection.Add((new TextCell
+                {
+                    Text = "Tijd toevoegen",
+#if __ANDROID__
+                    TextColor = Color.Black,
+#endif
+                    Command = new Command(async () =>
+                    {
+#if __ANDROID__
+                        ShowSelectTimeAndroid(coach.Scheduler);
+#endif
+
+#if _IOS_
+                        await ShowSelectTimeAlert(coach.Scheduler);
+#endif
+                    }),
+                    StyleId = "disclosure"
+                }));
             };
 
             times.AsObservable().CollectionChanged += (sender, e) => renderTimeSection();
             renderTimeSection();
 
-            Content = new TableView {
+            Content = new TableView
+            {
                 Root = new TableRoot {
                     new TableSection {
                         selectTips
@@ -71,9 +98,14 @@ namespace ACD.App
 
         public TextCell createNewTextCells(string text)
         {
-            return new TextCell {
+            return new TextCell
+            {
                 Text = text,
-                Command = new Command(async () => {
+#if __ANDROID__
+                TextColor = Color.Black,
+#endif
+                Command = new Command(async () =>
+                {
                     await Navigation.PushAsync(selectTipsPage);
                 }),
                 StyleId = "disclosure"
@@ -85,25 +117,66 @@ namespace ACD.App
             public TimeCell(TipScheduler scheduler, TimeSpan time)
             {
                 Text = "Om " + time.ToString(@"hh\:mm") + " uur";
-                Command = new Command(async () => {
+                Command = new Command(async () =>
+                {
+
+
                     await ShowSelectTimeAlert(scheduler, time);
+
                 });
                 //StyleId = "disclosure";
-                var edit = new MenuItem {
+                var edit = new MenuItem
+                {
                     Text = "Wijzig"
                 };
-                edit.Clicked += async (sender, e) => {
-                    await ShowSelectTimeAlert(scheduler, time);
+                edit.Clicked += async (sender, e) =>
+                {
+                    var morningCheck = new TimePicker
+                    {
+                        Time = time,
+                        Format = "HH:mm"
+                    };
+                    morningCheck.SetBinding(TimePicker.TimeProperty, "MorningCheck", BindingMode.TwoWay);
                 };
-                var delete = new MenuItem {
+                var delete = new MenuItem
+                {
                     Text = "Verwijder",
                     IsDestructive = true
                 };
-                delete.Clicked += (sender, e) => {
+                delete.Clicked += (sender, e) =>
+                {
                     scheduler.RemoveTime(time);
                 };
                 ContextActions.Add(edit, delete);
             }
+        }
+
+
+        static async void ShowSelectTimeAndroid(TipScheduler scheduler, TimeSpan? maybeTime = null)
+        {
+            var isEdit = maybeTime != null;
+            var time = maybeTime ?? DateTime.Now.TimeOfDay;
+
+            var tp = new TimePicker
+            {
+                Format = "HH:mm",
+                Time = time.MinutesOnly()
+            };
+
+            tp.PropertyChanged += (sender, e) =>
+           {
+               if (e.PropertyName == TimePicker.TimeProperty.PropertyName)
+                   return; // TODO: change delete into cancel button
+           };
+
+            var newTime = tp.Time.MinutesOnly();
+
+            if (!isEdit || newTime != time)
+            {
+                //if (isEdit) scheduler.RemoveTime(time);
+                scheduler.AddTime(newTime);
+            }
+
         }
 
         static async Task ShowSelectTimeAlert(TipScheduler scheduler, TimeSpan? maybeTime = null)
@@ -111,23 +184,25 @@ namespace ACD.App
             var isEdit = maybeTime != null;
             var time = maybeTime ?? DateTime.Now.TimeOfDay;
 
-            var tp = new TimePicker {
+            var tp = new TimePicker
+            {
                 Format = "HH:mm",
-                Time = time.MinutesOnly(),
-                HorizontalOptions = LayoutOptions.CenterAndExpand,
-                WidthRequest = 60
+                Time = time.MinutesOnly()
             };
-            var cancelButton = new AlertButton {
+            var cancelButton = new AlertButton
+            {
                 Text = isEdit ? "Verwijder" : "Annuleer",
                 IsDestructive = isEdit,
-                Action = () => {
+                Action = () =>
+                {
                     if (isEdit)
                         scheduler.RemoveTime(time);
                     return false;
                 }
             };
 
-            tp.PropertyChanged += (sender, e) => {
+            tp.PropertyChanged += (sender, e) =>
+            {
                 if (e.PropertyName == TimePicker.TimeProperty.PropertyName)
                     return; // TODO: change delete into cancel button
             };
@@ -137,10 +212,12 @@ namespace ACD.App
                 "Voer hieronder de tijd in waarop je een tip wil ontvangen.",
                 tp,
                 cancelButton,
-                new AlertButton {
+                new AlertButton
+                {
                     Text = "Opslaan",
                     IsPreferred = true,
-                    Action = () => {
+                    Action = () =>
+                    {
                         var newTime = tp.Time.MinutesOnly();
                         if (!isEdit || newTime != time)
                         {
@@ -153,5 +230,6 @@ namespace ACD.App
             );
         }
     }
+
 }
 

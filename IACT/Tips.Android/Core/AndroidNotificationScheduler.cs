@@ -45,7 +45,7 @@ namespace ACD.App.Droid
 
             var nb = new NotificationCompat.Builder(context)
                 .SetContentTitle(n.Title)
-                //.SetSmallIcon(Resource.Drawable.icon)
+                .SetSmallIcon(Resource.Drawable.icon)
                 .SetContentText(n.Body)
                 .SetContentIntent(resultPendingIntent)
                 .SetAutoCancel(true);

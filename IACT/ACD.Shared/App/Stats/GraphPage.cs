@@ -94,6 +94,7 @@ namespace ACD.App
                                         if (images != null)
                                         {
                                             var padding = imageSize * 0.2;
+                                            //TODO: Find solution to images missing
                                             canvas.DrawImage(images[0], 0, top, imageSize - padding, imageSize - padding);
                                             canvas.DrawImage(images[1], 0, bottom - imageSize + padding, imageSize - padding, imageSize - padding);
                                         }

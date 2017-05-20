@@ -1,10 +1,11 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
 using ACD.App;
+using Android.Widget;
 
 namespace ACD
 {
@@ -31,6 +32,7 @@ namespace ACD
         public bool IsPreferred { get; set; }
         public Func<bool> Action { get; set; }
         public Func<Task<bool>> ActionAsync { get; set; }
+
     }
 }
 
