@@ -27,9 +27,12 @@ namespace ACD.App.Droid
         {
             var n = Serialization.Deserialize<Notification>(intent.GetStringExtra("object"));
 
+
+
             var resultIntent = new Intent(context, typeof(MainActivity));
             resultIntent.PutExtra("open", n.Open);
             resultIntent.PutExtra("data", n.Data);
+            resultIntent.PutExtra("action", n.Action);
 
 			if (!string.IsNullOrWhiteSpace(n.Data))
 			{

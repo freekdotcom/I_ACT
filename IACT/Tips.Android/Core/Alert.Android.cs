@@ -78,6 +78,25 @@ namespace ACD.App.Droid
                         CommandsForButtons(Buttons.First());
                     };
                 }
+                else if (Title.Contains("Hoe gaat het"))
+                {
+                    btnPositive.Visibility = Android.Views.ViewStates.Gone;
+                    btnNegative.Visibility = Android.Views.ViewStates.Gone;
+                    btnNeutral.Visibility = Android.Views.ViewStates.Visible;
+
+                    var happySlider = view.FindViewById<Android.Widget.SeekBar>(Resource.Id.happinessSlider);
+                    happySlider.SetProgress(5, false);
+                    happySlider.Visibility = Android.Views.ViewStates.Visible;
+                    btnNeutral.Text = Buttons.First().Text;
+                    btnNeutral.Click += delegate
+                    {
+                        var car = (Xamarin.Forms.Slider)Content;
+                        var totalHappyValue = happySlider.Progress / 10;
+                        car.Value = totalHappyValue;
+
+                        CommandsForButtons(Buttons.First());
+                    };
+                }
                 else
                 {
                     //Checks if there are no buttons, and if there aren't any, creates a neutral one
@@ -107,20 +126,16 @@ namespace ACD.App.Droid
                     {
                         pincode.Visibility = Android.Views.ViewStates.Gone;
                     }
-                    else
-                    {
-
-                    }
 
                     //Positive button feedback
                     btnPositive.Text = Buttons.Last().Text;
                     btnPositive.Click += delegate
                     {
-  
-                            var test = (StackLayout)Content;
-                            var car = (Entry)test.Children[0];
-                            car.Text = pincode.Text;
-                  
+
+                        var test = (StackLayout)Content;
+                        var car = (Entry)test.Children[0];
+                        car.Text = pincode.Text;
+
 
                         CommandsForButtons(Buttons.Last());
                     };
@@ -162,7 +177,7 @@ namespace ACD.App.Droid
             public override Dialog OnCreateDialog(Bundle savedInstanceState)
             {
                 var test = AndroidCustomAlert(Activity);
-                test.SetCanceledOnTouchOutside(false);
+                //test.SetCanceledOnTouchOutside(false);
                 return test;
             }
 
@@ -199,7 +214,7 @@ namespace ACD.App.Droid
             adf.Show(ft, "alert");
 
             await tcs.Task;
-                    }
+        }
 
     }
 }

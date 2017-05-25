@@ -57,7 +57,11 @@ namespace ACD.App
 
             var diaryPage = new DiaryPage(coach);
 
-            Content = new TableView {
+
+
+
+            Content = new TableView
+            {
                 Root = new TableRoot {
                     new TableSection("Stemming") {
                         new TextCell {
