@@ -205,9 +205,9 @@ namespace ACD.App
                 {
                     Text = "Om: ",
                     Style = StyleKit.AutoDarkLabelStyles.Body,
-#if __ANDROID__
+                    #if __ANDROID__
                     TextColor = Color.Black,
-#endif
+                    #endif
                     HorizontalTextAlignment = TextAlignment.End,
                     VerticalTextAlignment = TextAlignment.Center
                 };

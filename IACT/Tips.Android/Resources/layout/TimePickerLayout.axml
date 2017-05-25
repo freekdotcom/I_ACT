@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="25px"
+    android:minHeight="25px"
+    android:background="#fa5755">
+    <TimePicker
+        android:id="@+id/timePicker1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:headerBackground="#fa5755" />
+    <LinearLayout
+        android:id="@+id/linearLayoutBtns"
+        android:layout_below="@+id/timePicker1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp">
+        <Button
+            android:id="@+id/btnLoginLL"
+            android:layout_width="125dp"
+            android:layout_height="35dp"
+            android:textSize="14dp"
+            android:text="Login"
+            android:typeface="sans"
+            android:background="#ffffffff"
+            android:textColor="#3c3c3c"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="5dp" />
+        <Button
+            android:id="@+id/btnClearLL"
+            android:layout_width="125dp"
+            android:layout_height="35dp"
+            android:textSize="14dp"
+            android:text="Cancel"
+            android:typeface="sans"
+            android:background="#ffffffff"
+            android:layout_marginLeft="5dp"
+            android:textColor="#3c3c3c"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="5dp" />
+    </LinearLayout>
+</RelativeLayout>

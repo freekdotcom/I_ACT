@@ -56,7 +56,7 @@ namespace ACD.App
             return new Notification {
                 Title = "Stemmingscheck",
                 Body = "Hoe gaat het met je? Open de app om je stemming door te geven.",
-                Open = "0",
+                Open = "1",
                 Action = "beoordelen",
                 Time = fullTime,
                 Repeat = TimeSpan.FromDays(1)

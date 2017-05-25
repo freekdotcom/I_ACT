@@ -62,14 +62,8 @@ namespace ACD.App
 #endif
                     Command = new Command(async () =>
                     {
-#if __ANDROID__
-                        ShowSelectTimeAndroid(coach.Scheduler);
-#endif
-
-#if _IOS_
                         await ShowSelectTimeAlert(coach.Scheduler);
-#endif
-                    }),
+                      }),
                     StyleId = "disclosure"
                 }));
             };
@@ -119,9 +113,7 @@ namespace ACD.App
                 Text = "Om " + time.ToString(@"hh\:mm") + " uur";
                 Command = new Command(async () =>
                 {
-
-
-                    await ShowSelectTimeAlert(scheduler, time);
+                  await ShowSelectTimeAlert(scheduler, time);
 
                 });
                 //StyleId = "disclosure";
@@ -131,12 +123,7 @@ namespace ACD.App
                 };
                 edit.Clicked += async (sender, e) =>
                 {
-                    var morningCheck = new TimePicker
-                    {
-                        Time = time,
-                        Format = "HH:mm"
-                    };
-                    morningCheck.SetBinding(TimePicker.TimeProperty, "MorningCheck", BindingMode.TwoWay);
+                    await ShowSelectTimeAlert(scheduler, time);
                 };
                 var delete = new MenuItem
                 {
@@ -152,30 +139,18 @@ namespace ACD.App
         }
 
 
-        static async void ShowSelectTimeAndroid(TipScheduler scheduler, TimeSpan? maybeTime = null)
+        static async Task ShowSelectTimeAndroid(TipScheduler scheduler, TimeSpan? maybeTime = null)
         {
-            var isEdit = maybeTime != null;
-            var time = maybeTime ?? DateTime.Now.TimeOfDay;
 
-            var tp = new TimePicker
+            Func<int, TimePicker> createTP = (int hours) => new TimePicker
             {
-                Format = "HH:mm",
-                Time = time.MinutesOnly()
-            };
+                Time = TimeSpan.FromHours(hours),
+                Format = "HH:mm"
+            };            var tp = createTP(12);
 
-            tp.PropertyChanged += (sender, e) =>
-           {
-               if (e.PropertyName == TimePicker.TimeProperty.PropertyName)
-                   return; // TODO: change delete into cancel button
-           };
+            tp.Focus();
 
-            var newTime = tp.Time.MinutesOnly();
-
-            if (!isEdit || newTime != time)
-            {
-                //if (isEdit) scheduler.RemoveTime(time);
-                scheduler.AddTime(newTime);
-            }
+            scheduler.AddTime(tp.Time.MinutesOnly());
 
         }
 

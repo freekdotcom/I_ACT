@@ -213,6 +213,7 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\layout\AlertDialogLayout.axml" />
+    <AndroidResource Include="Resources\layout\TimePickerLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="SharpSerializer">

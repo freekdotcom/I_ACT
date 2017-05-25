@@ -4663,8 +4663,8 @@ namespace ACD.App.Droid
 			// aapt resource value: 0x7f0c0048
 			public const int list_item = 2131492936;
 			
-			// aapt resource value: 0x7f0c00ba
-			public const int masked = 2131493050;
+			// aapt resource value: 0x7f0c00bb
+			public const int masked = 2131493051;
 			
 			// aapt resource value: 0x7f0c00a6
 			public const int media_actions = 2131493030;
@@ -4939,6 +4939,9 @@ namespace ACD.App.Droid
 			// aapt resource value: 0x7f0c00ab
 			public const int time = 2131493035;
 			
+			// aapt resource value: 0x7f0c00b8
+			public const int timePicker1 = 2131493048;
+			
 			// aapt resource value: 0x7f0c004a
 			public const int title = 2131492938;
 			
@@ -4948,8 +4951,8 @@ namespace ACD.App.Droid
 			// aapt resource value: 0x7f0c0057
 			public const int title_template = 2131492951;
 			
-			// aapt resource value: 0x7f0c00b8
-			public const int toolbar = 2131493048;
+			// aapt resource value: 0x7f0c00b9
+			public const int toolbar = 2131493049;
 			
 			// aapt resource value: 0x7f0c001e
 			public const int top = 2131492894;
@@ -4975,8 +4978,8 @@ namespace ACD.App.Droid
 			// aapt resource value: 0x7f0c0002
 			public const int view_offset_helper = 2131492866;
 			
-			// aapt resource value: 0x7f0c00b9
-			public const int visible = 2131493049;
+			// aapt resource value: 0x7f0c00ba
+			public const int visible = 2131493050;
 			
 			// aapt resource value: 0x7f0c0098
 			public const int volume_item_container = 2131493016;
@@ -5273,7 +5276,10 @@ namespace ACD.App.Droid
 			public const int Tabbar = 2130903107;
 			
 			// aapt resource value: 0x7f030044
-			public const int Toolbar = 2130903108;
+			public const int TimePickerLayout = 2130903108;
+			
+			// aapt resource value: 0x7f030045
+			public const int Toolbar = 2130903109;
 			
 			static Layout()
 			{

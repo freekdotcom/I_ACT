@@ -11,14 +11,14 @@ namespace ACD.App
         public static readonly Color BarBackgroundColor = Color.FromRgb(242, 183, 57);
         public static readonly Color BarTextColor = Color.White;
 
-        ListView list;
+        //ListView list;
 
         public DiaryPage(Coach coach)
         {
             Title = "Dagboekje";
 
             var diary = coach.UserProfile.Diary;
-            list = new ListView(ListViewCachingStrategy.RecycleElement) {
+            var list = new ListView(ListViewCachingStrategy.RecycleElement) {
                 ItemsSource = diary,
                 ItemTemplate = new DataTemplate(() => {
                     var cell = new TextCell {

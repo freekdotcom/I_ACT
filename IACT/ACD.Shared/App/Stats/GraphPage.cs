@@ -33,29 +33,34 @@ namespace ACD.App
 
             Title = name;
 
-            list = new GraphList() {
+            list = new GraphList()
+            {
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
                 BackgroundColor = Color.Transparent
             };
 
             list.ItemTapped += (sender, e) => onTap?.Invoke(e.Item as DayFragment);
 
-            yearLabel = new Label {
+            yearLabel = new Label
+            {
                 HorizontalTextAlignment = TextAlignment.Center,
                 VerticalOptions = LayoutOptions.EndAndExpand,
                 Style = StyleKit.AutoDarkLabelStyles.Body,
                 BindingContext = list
             };
 
-            explanationLabel = new Label {
+            explanationLabel = new Label
+            {
                 Text = explanation,
                 HorizontalTextAlignment = TextAlignment.Center,
                 VerticalOptions = LayoutOptions.StartAndExpand,
                 Style = StyleKit.AutoDarkLabelStyles.Caption
             };
 
-            Content = new ScrollView {
-                Content = container = new AbsoluteLayout {
+            Content = new ScrollView
+            {
+                Content = container = new AbsoluteLayout
+                {
                     Children = {
                         (layout = new StackLayout {
                             Padding = StyleKit.AutoPaddingLight,
@@ -93,6 +98,7 @@ namespace ACD.App
                                         canvas.DrawLine(left, bottom, right, bottom, Colors.Black, 2.0);
                                         if (images != null)
                                         {
+
                                             var padding = imageSize * 0.2;
                                             //TODO: Find solution to images missing
                                             canvas.DrawImage(images[0], 0, top, imageSize - padding, imageSize - padding);
@@ -125,6 +131,11 @@ namespace ACD.App
         async void GetImages()
         {
             images = new IImage[] {
+                #if __ANDROID__
+                await new FileImageSource { File = "face_smile.png" }.ToIImage(),
+                await new FileImageSource { File = "face_sad.png" }.ToIImage(),
+                #endif
+
                 await new FileImageSource { File = "face-smile.png" }.ToIImage(),
                 await new FileImageSource { File = "face-sad.png" }.ToIImage(),
             };

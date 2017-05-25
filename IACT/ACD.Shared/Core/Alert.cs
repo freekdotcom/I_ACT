@@ -25,7 +25,7 @@ namespace ACD
         }
     }
 
-    public class AlertButton // TODO: INotifyPropertyChanged + data binding
+    public class AlertButton 
     {
         public string Text { get; set; }
         public bool IsDestructive { get; set; }

@@ -30,13 +30,10 @@ namespace ACD.App.Droid
             public string Body;
             public View Content;
             public List<AlertButton> Buttons;
-            public Func<Task> tcs;
 
 
             public Dialog AndroidCustomAlert(Activity activ)
             {
-                Contract.Ensures(Contract.Result<Dialog>() != null);
-
                 Android.Views.LayoutInflater inflater = Android.Views.LayoutInflater.From(activ);
                 Android.Views.View view = inflater.Inflate(Resource.Layout.AlertDialogLayout, null);
 
@@ -53,49 +50,96 @@ namespace ACD.App.Droid
                 Android.Widget.Button btnNegative = view.FindViewById<Android.Widget.Button>(Resource.Id.btnClearLL);
                 Android.Widget.Button btnNeutral = view.FindViewById<Android.Widget.Button>(Resource.Id.btnNeutral);
 
-                //Checks if there are no buttons, and if there aren't any, creates a neutral one
-                if (Buttons == null || Buttons.Count == 0)
+                if (Title.Contains("Tijd"))
                 {
-                    btnPositive.Visibility = Android.Views.ViewStates.Gone;
-                    btnNegative.Visibility = Android.Views.ViewStates.Gone;
-                    btnNeutral.Visibility = Android.Views.ViewStates.Visible;
-                    pincode.Visibility = Android.Views.ViewStates.Gone;
+                    Android.Views.View secondView = inflater.Inflate(Resource.Layout.TimePickerLayout, null);
+                    builder.SetView(secondView);
 
-                    Buttons = new List<AlertButton> {
+                    btnPositive = secondView.FindViewById<Android.Widget.Button>(Resource.Id.btnLoginLL);
+                    btnNegative = secondView.FindViewById<Android.Widget.Button>(Resource.Id.btnClearLL);
+                    var tp = secondView.FindViewById<Android.Widget.TimePicker>(Resource.Id.timePicker1);
+                    tp.SetIs24HourView((Java.Lang.Boolean)true);
+                    //Positive button feedback
+                    btnPositive.Text = Buttons.Last().Text;
+                    btnPositive.Click += delegate
+                    {
+                        var car = (Xamarin.Forms.TimePicker)Content;
+                        var ts = new TimeSpan(tp.Hour, tp.Minute, 0);
+                        car.Time = ts;
+
+                        CommandsForButtons(Buttons.Last());
+                    };
+
+                    //Negative button feedback
+                    btnNegative.Text = Buttons.First().Text;
+                    btnNegative.Click += delegate
+                    {
+
+                        CommandsForButtons(Buttons.First());
+                    };
+                }
+                else
+                {
+                    //Checks if there are no buttons, and if there aren't any, creates a neutral one
+                    if (Buttons == null || Buttons.Count == 0)
+                    {
+                        btnPositive.Visibility = Android.Views.ViewStates.Gone;
+                        btnNegative.Visibility = Android.Views.ViewStates.Gone;
+                        btnNeutral.Visibility = Android.Views.ViewStates.Visible;
+                        pincode.Visibility = Android.Views.ViewStates.Gone;
+
+                        Buttons = new List<AlertButton> {
                     new AlertButton {
                         Text = "Oké",
                         IsPreferred = true,
                         Action = () => false
+                        }
+                    };
+                        btnNeutral.Text = Buttons.First().Text;
+                        btnNeutral.Click += delegate
+                        {
+
+                            CommandsForButtons(Buttons.First());
+                        };
                     }
-                };
-                    btnNeutral.Text = Buttons.First().Text;
-                    btnNeutral.Click += delegate
+
+                    if (Content == null)
                     {
+                        pincode.Visibility = Android.Views.ViewStates.Gone;
+                    }
+                    else
+                    {
+
+                    }
+
+                    //Positive button feedback
+                    btnPositive.Text = Buttons.Last().Text;
+                    btnPositive.Click += delegate
+                    {
+  
+                            var test = (StackLayout)Content;
+                            var car = (Entry)test.Children[0];
+                            car.Text = pincode.Text;
+                  
+
+                        CommandsForButtons(Buttons.Last());
+                    };
+
+                    //Negative button feedback
+                    btnNegative.Text = Buttons.First().Text;
+                    btnNegative.Click += delegate
+                    {
+
                         CommandsForButtons(Buttons.First());
                     };
                 }
-
-          
-                //Positive button feedback
-                btnPositive.Text = Buttons.Last().Text;
-                btnPositive.Click += delegate
-                {
-                    CommandsForButtons(Buttons.Last());
-                };
-
-                //Negative button feedback
-                btnNegative.Text = Buttons.First().Text;
-                btnNegative.Click += delegate
-                {
-                    CommandsForButtons(Buttons.First());
-                };
 
                 builder.SetCancelable(false);
                 return builder.Create();
             }
 
             public void CommandsForButtons(AlertButton button)
-            {      
+            {
                 var command = new Command(async () =>
                 {
                     var ab = button;
@@ -118,9 +162,10 @@ namespace ACD.App.Droid
             public override Dialog OnCreateDialog(Bundle savedInstanceState)
             {
                 var test = AndroidCustomAlert(Activity);
-                //test.SetCanceledOnTouchOutside(false);
+                test.SetCanceledOnTouchOutside(false);
                 return test;
             }
+
 
         }
 
@@ -146,14 +191,15 @@ namespace ACD.App.Droid
                 ft.Remove(prev);
             }
 
+            if (title.Contains("welkom"))
+                tcs.SetResult(null);
+
             ft.AddToBackStack(null);
 
             adf.Show(ft, "alert");
 
             await tcs.Task;
-
-            return;
-        }
+                    }
 
     }
 }
